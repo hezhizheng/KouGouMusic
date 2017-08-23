@@ -1,0 +1,19 @@
+{
+    "name": "dexterho/kugou-music-download",
+    "description": "search music download for kugou",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "dexterho",
+            "email": "he.zhizheng@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Dexterho\\kuGouMusic\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
