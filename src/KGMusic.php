@@ -151,7 +151,7 @@ class KGMusic
      * @param int $https https协议
      * @return bool|mixed
      */
-    private function curlApi($url, $params = false, $ispost = 0, $https = 0)
+    private static function curlApi($url, $params = false, $ispost = 0, $https = 0)
     {
         $httpInfo = array();
         $ch = curl_init();
