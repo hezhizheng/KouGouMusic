@@ -8,6 +8,9 @@
 
 namespace Dexterho\kuGouMusic;
 
+
+use Result\MusicInfo\MusicInfo;
+
 class KGMusic
 {
 
@@ -99,7 +102,7 @@ class KGMusic
      * 根据'http://www.kugou.com/yy/index.php/......'的地址直接获取音乐信息(包含实际播放地址)
      *
      * @param $url
-     * @return bool|mixed
+     * @return MusicInfo
      */
     public static function getMusicInfoForKuGouUrl($url)
     {
@@ -112,19 +115,21 @@ class KGMusic
 
     }
 
+
     /**
      * 下载酷音乐，打开网页版酷狗官网抓取即可。
      *
      * @param string $mp3_url
      * @param string $artist //歌手名
      * @param string $title // 歌曲名
+     * @return int
      */
     public static function downloadMusic($mp3_url , $artist , $title)
     {
         header("Content-length:");
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment; filename="'.$artist.' - '.$title.'.mp3'.'"');
-        readfile($mp3_url);
+        return readfile($mp3_url);
 
     }
 

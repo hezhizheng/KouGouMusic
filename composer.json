@@ -11,7 +11,9 @@
     ],
     "autoload": {
         "psr-4": {
-            "Dexterho\\kuGouMusic\\": "src/"
+            "Dexterho\\kuGouMusic\\": "src/",
+            "Result\\MusicInfo\\": "src/Result/",
+            "Result\\DataInfo\\": "src/Result/"
         }
     },
     "minimum-stability": "dev",
