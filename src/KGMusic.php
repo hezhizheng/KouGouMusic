@@ -18,6 +18,11 @@ class KGMusic
 
     private static $get_music_info_url = 'http://www.kugou.com/yy/index.php'; // 获取音乐信息的API
 
+    private static $get_music_info_singer = 'http://so.service.kugou.com/get/complex'; //歌手名
+
+    private static $get_music_info_list = 'http://songsearch.kugou.com/song_search_v2'; // all
+
+
     private static $format = 'json';  //搜歌的数据结构的类型
 
     private static $page = 1;
@@ -131,6 +136,38 @@ class KGMusic
         header('Content-Disposition: attachment; filename="'.$artist.' - '.$title.'.mp3'.'"');
         return readfile($mp3_url);
 
+    }
+
+
+    /**
+     * 新版搜歌API
+     *
+     * @param $keyword
+     * @param int $page
+     * @param int $pagesize
+     * @return bool|mixed
+     */
+    public static function getMusicInfoList($keyword, $page=1, $pagesize=30)
+    {
+        $params = [
+            'keyword' => $keyword,
+            'page' => $page,
+            'pagesize' => $pagesize,
+            'userid' => -1,
+            'clientver' => null,
+            'platform' => 'WebFilter',
+            'tag' => 'em',
+            'filter' => 2,
+            'iscorrection' => 1,
+            'privilege_filter' => 0,
+        ];
+
+        $result = self::curlApi(self::$get_music_info_list,$params);
+
+        $result = json_decode($result ,true);
+
+        return $result;
+        
     }
 
     /**
