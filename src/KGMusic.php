@@ -1,12 +1,12 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: dexterho
+ * User: DexterHo
  * Date: 2017/8/22
  * Time: 23:02
  */
 
-namespace Dexterho\kuGouMusic;
+namespace DexterHo\kuGouMusic;
 
 
 use Result\MusicInfo\MusicInfo;

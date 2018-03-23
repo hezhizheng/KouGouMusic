@@ -1,17 +1,17 @@
 {
-    "name": "dexterho/kugou-music-download",
+    "name": "DexterHo/kugou-music-download",
     "description": "search music download for kugou",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "dexterho",
+            "name": "DexterHo",
             "email": "he.zhizheng@qq.com"
         }
     ],
     "autoload": {
         "psr-4": {
-            "Dexterho\\kuGouMusic\\": "src/",
+            "DexterHo\\kuGouMusic\\": "src/",
             "Result\\MusicInfo\\": "src/Result/",
             "Result\\DataInfo\\": "src/Result/"
         }
