@@ -1,11 +1,11 @@
 {
-    "name": "DexterHo/kugou-music-download",
+    "name": "dexterho/kugou-music-download",
     "description": "search music download for kugou",
     "type": "library",
     "license": "MIT",
     "authors": [
         {
-            "name": "DexterHo",
+            "name": "dexterho",
             "email": "he.zhizheng@qq.com"
         }
     ],
