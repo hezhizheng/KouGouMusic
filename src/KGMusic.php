@@ -105,19 +105,16 @@ class KGMusic
 
     /**
      * 根据'http://www.kugou.com/yy/index.php/......'的地址直接获取音乐信息(包含实际播放地址)
+     * todo 这里酷狗有时会变数据结构 wtf
      *
      * @param $url
      * @return MusicInfo
      */
     public static function getMusicInfoForKuGouUrl($url)
     {
-
         $result = self::curlApi($url);
 
-        $result = json_decode($result );
-
         return $result;
-
     }
 
 
