@@ -8,20 +8,14 @@
 
 namespace DexterHo\kuGouMusic;
 
-
-use Result\MusicInfo\MusicInfo;
-
 class KGMusic
 {
 
-    private static $search_url = 'http://mobilecdn.kugou.com/api/v3/search/song';  //搜索的API
+    private static $search_url = 'http://mobilecdn.kugou.com/api/v3/search/song';  // 搜索的API todo 这个地址是旧版
 
     private static $get_music_info_url = 'http://www.kugou.com/yy/index.php'; // 获取音乐信息的API
 
-    private static $get_music_info_singer = 'http://so.service.kugou.com/get/complex'; //歌手名
-
     private static $get_music_info_list = 'http://songsearch.kugou.com/song_search_v2'; // all
-
 
     private static $format = 'json';  //搜歌的数据结构的类型
 
@@ -30,7 +24,6 @@ class KGMusic
     private static $pagesize = 9999999;
 
     private static $r = 'play/getdata';  //酷狗要的参数，必须
-
 
 
     /**
@@ -42,13 +35,13 @@ class KGMusic
     public static function getMusicList($keyword)
     {
         $search_params = [
-            'format' => self::$format,
-            'keyword' => $keyword,
-            'page' => self::$page,
+            'format'   => self::$format,
+            'keyword'  => $keyword,
+            'page'     => self::$page,
             'pagesize' => self::$pagesize,
         ];
 
-        $search_result = self::curlApi(self::$search_url,$search_params);
+        $search_result = self::curlApi(self::$search_url, $search_params);
 
         $data = json_decode($search_result);
 
@@ -64,13 +57,13 @@ class KGMusic
     public static function getHashAlbumId($keyword)
     {
         $search_params = [
-            'format' => self::$format,
-            'keyword' => $keyword,
-            'page' => self::$page,
+            'format'   => self::$format,
+            'keyword'  => $keyword,
+            'page'     => self::$page,
             'pagesize' => self::$pagesize,
         ];
 
-        $search_result =  self::curlApi(self::$search_url,$search_params);
+        $search_result = self::curlApi(self::$search_url, $search_params);
 
         $data = json_decode($search_result);
 
@@ -83,20 +76,20 @@ class KGMusic
 
     /**
      * 根据hash、album_id，获取音乐的详细信息（包括实际地址）
-     *
+     * @test
      * @param $hash
      * @param $album_id
      * @return mixed
      */
-    public static function getMusicInfoForHashAlbumId($hash , $album_id )
+    public static function getMusicInfoForHashAlbumId($hash, $album_id)
     {
         $params = [
-            'r' => self::$r,
-            'hash' => $hash,
+            'r'        => self::$r,
+            'hash'     => $hash,
             'album_id' => $album_id
         ];
 
-        $music_info = self::curlApi(self::$get_music_info_url,$params);
+        $music_info = self::curlApi(self::$get_music_info_url, $params);
 
         $result = json_decode($music_info);
 
@@ -106,9 +99,8 @@ class KGMusic
     /**
      * 根据'http://www.kugou.com/yy/index.php/......'的地址直接获取音乐信息(包含实际播放地址)
      * todo 这里酷狗有时会变数据结构 wtf
-     *
      * @param $url
-     * @return MusicInfo
+     * @return bool|mixed
      */
     public static function getMusicInfoForKuGouUrl($url)
     {
@@ -126,11 +118,11 @@ class KGMusic
      * @param string $title // 歌曲名
      * @return int
      */
-    public static function downloadMusic($mp3_url , $artist , $title)
+    public static function downloadMusic($mp3_url, $artist, $title)
     {
         header("Content-length:");
         header('Content-Type: application/octet-stream');
-        header('Content-Disposition: attachment; filename="'.$artist.' - '.$title.'.mp3'.'"');
+        header('Content-Disposition: attachment; filename="' . $artist . ' - ' . $title . '.mp3' . '"');
         return readfile($mp3_url);
 
     }
@@ -138,33 +130,33 @@ class KGMusic
 
     /**
      * 新版搜歌API
-     *
+     * @test
      * @param $keyword
      * @param int $page
      * @param int $pagesize
      * @return bool|mixed
      */
-    public static function getMusicInfoList($keyword, $page=1, $pagesize=30)
+    public static function getMusicInfoList($keyword, $page = 1, $pagesize = 30)
     {
         $params = [
-            'keyword' => $keyword,
-            'page' => $page,
-            'pagesize' => $pagesize,
-            'userid' => -1,
-            'clientver' => null,
-            'platform' => 'WebFilter',
-            'tag' => 'em',
-            'filter' => 2,
-            'iscorrection' => 1,
+            'keyword'          => $keyword,
+            'page'             => $page,
+            'pagesize'         => $pagesize,
+            'userid'           => -1,
+            'clientver'        => null,
+            'platform'         => 'WebFilter',
+            'tag'              => 'em',
+            'filter'           => 2,
+            'iscorrection'     => 1,
             'privilege_filter' => 0,
         ];
 
-        $result = self::curlApi(self::$get_music_info_list,$params);
+        $result = self::curlApi(self::$get_music_info_list, $params);
 
-        $result = json_decode($result ,true);
+        $result = json_decode($result, true);
 
         return $result;
-        
+
     }
 
     /**
@@ -177,7 +169,7 @@ class KGMusic
     {
         $status = get_headers($mp3_url)[0];
 
-        if (  strstr($status,"200") ) return true;
+        if (strstr($status, "200")) return true;
 
         return false;
 
