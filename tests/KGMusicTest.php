@@ -7,8 +7,6 @@
  * Created by Created by Panxsoft.
  */
 
-require_once '../vendor/autoload.php';
-
 use DexterHo\kuGouMusic\KGMusic;
 
 class KGMusicTest extends \PHPUnit\Framework\TestCase
