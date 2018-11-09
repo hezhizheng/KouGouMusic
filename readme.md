@@ -10,7 +10,7 @@
 
 ## 使用
 
-请参考 [Test](https://github.com/hezhizheng/KouGouMusic/blob/master/tests/phpKGMusicTest.php)
+请参考 [Test](https://github.com/hezhizheng/KouGouMusic/blob/master/tests/KGMusicTest.php)
 
 ## License
 
