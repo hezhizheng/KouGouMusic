@@ -13,7 +13,7 @@ class KGMusic
 
     private static $search_url = 'http://mobilecdn.kugou.com/api/v3/search/song';  // 搜索的API todo 这个地址是旧版
 
-    private static $get_music_info_url = 'http://www.kugou.com/yy/index.php'; // 获取音乐信息的API
+    private static $get_music_info_url = 'http://wwwapi.kugou.com/yy/index.php'; // 获取音乐信息的API
 
     private static $get_music_info_list = 'http://songsearch.kugou.com/song_search_v2'; // all
 
@@ -86,7 +86,8 @@ class KGMusic
         $params = [
             'r'        => self::$r,
             'hash'     => $hash,
-            'album_id' => $album_id
+//            'album_id' => $album_id,
+            'mid'=>'1a0148508285c9ad',
         ];
 
         $music_info = self::curlApi(self::$get_music_info_url, $params);

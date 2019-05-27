@@ -22,6 +22,7 @@ class KGMusicTest extends \PHPUnit\Framework\TestCase
         $result = $kg::getMusicInfoList($keywords[$keyword]);
 
         $this->assertTrue(is_array($result));
+        var_dump($result);
 
         $this->assertArrayHasKey('data', $result);
     }
@@ -33,11 +34,12 @@ class KGMusicTest extends \PHPUnit\Framework\TestCase
     {
         $kg = new KGMusic;
 
-        $hash = '0ADD9933C80C0FF03B0A62B4796A37C7';
+        $hash = 'DF1CAD153586F90827D61D45198561B4';
         $album_id = '970633';
 
         $result = $kg::getMusicInfoForHashAlbumId($hash, $album_id);
 
+        var_dump($result);
         $this->assertTrue(is_object($result));
         $this->assertObjectHasAttribute('data', $result);
     }
